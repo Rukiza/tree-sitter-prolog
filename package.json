@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-prolog",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "Tree Sitter Prolog",
   "main": "bindings/node",
   "scripts": {
