@@ -13,5 +13,17 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.19.4"
-  }
+  },
+  "scripts": {
+    "test": "tree-sitter test && tree-sitter parse examples/*.pl --quiet --time"
+  },
+  "tree-sitter": [
+    {
+      "scope": "text.prolog",
+      "file-types": [
+        "pl"
+      ],
+      "injection-regex": "prolog"
+    }
+  ]
 }
