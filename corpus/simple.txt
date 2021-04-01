@@ -1,0 +1,12 @@
+==================
+Predicate Simple
+==================
+
+test_predicate.
+
+---
+
+(source_file
+  clause: (clause_term
+    (atomic
+      atom: (atom))))
