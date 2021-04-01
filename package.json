@@ -1,10 +1,10 @@
 {
   "name": "tree-sitter-prolog",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "Tree Sitter Prolog",
   "main": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tree-sitter test && tree-sitter parse examples/*.pl --quiet --time"
   },
   "author": "theproros@gmail.com",
   "license": "ISC",
@@ -13,9 +13,6 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.19.4"
-  },
-  "scripts": {
-    "test": "tree-sitter test && tree-sitter parse examples/*.pl --quiet --time"
   },
   "tree-sitter": [
     {
