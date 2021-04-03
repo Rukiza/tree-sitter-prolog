@@ -401,49 +401,6 @@
     }
   },
   {
-    "type": "operator",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "prefix_operator",
-    "named": true,
-    "fields": {
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "operator",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "atomic",
-            "named": true
-          },
-          {
-            "type": "bracketed_term",
-            "named": true
-          },
-          {
-            "type": "compound_term",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "source_file",
     "named": true,
     "fields": {
@@ -507,6 +464,10 @@
   },
   {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "operator",
     "named": true
   },
   {
