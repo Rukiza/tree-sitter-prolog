@@ -31,11 +31,6 @@
     }
   },
   {
-    "type": "atom",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "atomic",
     "named": true,
     "fields": {
@@ -114,7 +109,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -127,6 +122,10 @@
         },
         {
           "type": "compound_term",
+          "named": true
+        },
+        {
+          "type": "end",
           "named": true
         },
         {
@@ -155,8 +154,8 @@
         "required": false,
         "types": [
           {
-            "type": ")",
-            "named": false
+            "type": "bracket",
+            "named": true
           }
         ]
       },
@@ -207,8 +206,8 @@
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
+            "type": "bracket",
+            "named": true
           }
         ]
       },
@@ -273,7 +272,28 @@
   {
     "type": "curly_bracket_term",
     "named": true,
-    "fields": {},
+    "fields": {
+      "close_cb": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "curly_bracket",
+            "named": true
+          }
+        ]
+      },
+      "open_cb": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "curly_bracket",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -302,7 +322,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -318,11 +338,24 @@
           "named": true
         },
         {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
           "type": "variable",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "end",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "infix_operator",
@@ -397,6 +430,26 @@
             "named": true
           }
         ]
+      },
+      "close_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "square_brackets",
+            "named": true
+          }
+        ]
+      },
+      "open_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "square_brackets",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -427,39 +480,19 @@
     }
   },
   {
-    "type": "(",
-    "named": false
-  },
-  {
-    "type": ")",
-    "named": false
-  },
-  {
     "type": ",",
     "named": false
   },
   {
-    "type": ":-",
-    "named": false
-  },
-  {
-    "type": ";",
-    "named": false
-  },
-  {
-    "type": "[",
-    "named": false
-  },
-  {
-    "type": "[]",
-    "named": false
-  },
-  {
-    "type": "]",
-    "named": false
+    "type": "atom",
+    "named": true
   },
   {
     "type": "bracket",
+    "named": true
+  },
+  {
+    "type": "curly_bracket",
     "named": true
   },
   {
@@ -471,19 +504,11 @@
     "named": true
   },
   {
-    "type": "variable",
+    "type": "square_brackets",
     "named": true
   },
   {
-    "type": "{",
-    "named": false
-  },
-  {
-    "type": "{}",
-    "named": false
-  },
-  {
-    "type": "}",
-    "named": false
+    "type": "variable",
+    "named": true
   }
 ]
