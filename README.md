@@ -19,7 +19,9 @@ To include in your project.
 
 * Run
   > tree-sitter generate
+
   > tree-sitter parse examples/example1.pl
+  
   > tree-sitter test
 
 ## ToDo
