@@ -149,15 +149,15 @@ module.exports = grammar({
     // Change
 
     directive_term: $ => seq(
-      prec(1000, alias(':-', $.operator)),
+      alias(':-', $.operator),
       $._term,
-      prec(1000, $.end)
+      $.end
     ),
 
 
     clause_term: $ => seq(
       $._term,
-      prec(1000, $.end)
+      $.end
     ),
 
     _term: $ => prec(1, choice(
@@ -165,7 +165,8 @@ module.exports = grammar({
       $.atomic,
       $.variable,
       $.compound_term,
-      $.bracketed_term
+      $.bracketed_term,
+      $.dict
     )),
 
     _arg_term: $ => prec(2, choice(
@@ -188,8 +189,11 @@ module.exports = grammar({
 
     atomic: $ => choice(
       $.number,
-      //$.negative_number,
-      field('atom', $.atom)
+      //$.negaltive_number,
+      $.string,
+      $.quoted_atom,
+      $.atom,
+      alias('!', $.cut)
     ),
 
     variable: $ =>
@@ -229,7 +233,6 @@ module.exports = grammar({
 
     _curly_bracketed_notation: $ => $.curly_bracket_term,
 
-
     _prefix_notation: $ => field('prefix', alias(choice(
       // Define prefx notation`
       $._prefix_non_associative,          // fx
@@ -255,15 +258,7 @@ module.exports = grammar({
         [prec, PREC.clause, ':-'], // xfx
         [prec, PREC.dcg, '-->'], // xfx
 
-        //[prec.left, PREC.multipcation, '*'], // yfx
-        //[prec.right, PREC.list_sperator, '|'], // xfy
-
-        //[prec.right, PREC.disjunction, ';'], // xfy
-
-        //[prec.right, PREC.implies, '->'], // xfy
-        //[prec.right, PREC.soft_cut_implies, '*->'], // xfy
-
-        //[prec, PREC.colon_equals, ':='] // xfx
+        [prec.right, PREC.list_sperator, '|'], // xfy
 
         [prec.right, PREC.disjunction, ';'], // xfy
 
@@ -321,9 +316,9 @@ module.exports = grammar({
       ];
 
       return choice(...table.map(([fn, precidence, operator]) => fn(precidence, seq(
-        field('left', prec.left($._term)),
+        field('left', $._term),
         field('operator', alias(operator, $.operator)),
-        field('right', prec.right($._term))
+        field('right', $._term)
       ))))
     },
 
@@ -373,11 +368,40 @@ module.exports = grammar({
       ))))
     },
 
+    dict: $ => seq(
+      choice(
+        $.atom,
+        $.variable
+      ),
+      '{',
+      seq($.dict_value,
+        repeat(
+          seq(
+            ',',
+            $.dict_value
+          )
+        )
+      ),
+      '}'
+    ),
+
+    dict_value: $ => seq(
+      $.atom,
+      token.immediate(':'),
+      $._arg_term
+    ),
+
     number: $ => (
       /0[bB][01](_?[01])*|0[oO]?[0-7](_?[0-7])*|(0[dD])?\d(_?\d)*|0[xX][0-9a-fA-F](_?[0-9a-fA-F])*/
     ),
 
-    atom: $ => /[a-z][a-zA-Z0-9_]*|\[\]|\{\}/,
+    atom: $ => (
+      /[a-z][a-zA-Z0-9_]*|\[\]|\{\}/
+    ),
+
+    quoted_atom: $ => token(seq('\'', /.*/, '\'')),
+
+    string: $ => token(seq('\"', /.*/, '\"')),
 
     comment: $ => token(choice(
       seq('%', /.*/),
@@ -407,8 +431,8 @@ module.exports = grammar({
     )),
 
     _arg: $ => prec.left(choice(
-      alias(prec(0, $._operator_pred_list), $.operator),
-      prec(999, $._arg_term)
+      $._operator_pred_list,
+      $._arg_term
     )),
 
     args: $ => prec.right(seq(

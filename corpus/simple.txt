@@ -1,5 +1,5 @@
 ==================
-Predicate Simple
+Clause 1
 ==================
 
 test_predicate.
@@ -9,4 +9,52 @@ test_predicate.
 (source_file
   clause: (clause_term
     (atomic
-      atom: (atom))))
+      (atom)) (end)))
+
+==================
+Clause 2
+==================
+
+test_predicate:-
+  true.
+
+---
+
+(source_file
+  (clause_term
+    (compound_term
+    (infix_operator
+      (atomic
+        (atom))
+      (operator)
+      (atomic
+        (atom)))) (end)))
+
+====================
+DCG
+====================
+
+test_dcg -->
+  true.
+
+---
+
+(source_file
+  (clause_term
+    (compound_term
+    (infix_operator
+      (atomic
+        (atom))
+      (operator)
+      (atomic
+        (atom)))) (end)))
+
+====================
+Declarive
+====================
+
+:-test_predicate.
+
+---
+
+(source_file (directive_term (operator) (atomic (atom)) (end)))
