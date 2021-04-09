@@ -10,7 +10,7 @@ node_js:
 
 matrix:
   include:
-    - eval: TEST_NODE_VERSION=node
+    - env: TEST_NODE_VERSION=node
 
 before_install:
   - nvm install $TEST_NODE_VERSION
