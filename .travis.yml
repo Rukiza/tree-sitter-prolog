@@ -5,4 +5,4 @@ compiler: clang
 env:
   - CXX=clang++
 
-os: mac
+os: osx
