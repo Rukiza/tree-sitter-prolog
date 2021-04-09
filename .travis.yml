@@ -1,10 +1,5 @@
 language: node_js
 
-compiler: clang
-
-env:
-  - CXX=clang++
-
 node_js:
   - "8"
 
@@ -17,7 +12,6 @@ before_install:
   - nvm use $TRAVIS_NODE_VERSION
 
 before_scrip:
-  - make build-node
   - nvm use $TEST_NODE_VERSION
   - node --version
   - rm -rf ./node_modules package_lock.json
