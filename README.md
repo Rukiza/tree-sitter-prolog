@@ -21,13 +21,17 @@ To include in your project.
   > tree-sitter generate
 
   > tree-sitter parse examples/example1.pl
-  
+
   > tree-sitter test
+
+  > npm test
 
 ## ToDo
 
 * Implement CHR parsing.
 * Better match ISO
+* Add floats
+* Add context to some operators e.g =.. is Var =.. List and is.
 
 ## When using in Atom apps.
 

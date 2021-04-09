@@ -1,8 +1,8 @@
 try {
-  module.exports = require("./build/Release/tree_sitter_prolog_binding");
+  module.exports = require('node-gyp-build')(__dirname);
 } catch (error) {
   try {
-      module.exports = require("./build/Debug/tree_sitter_prolog_binding");
+      module.exports = require('node-gyp-build')(__dirname);
   } catch (_) {
       throw error
   }

@@ -4,13 +4,15 @@
   "description": "Tree Sitter Prolog",
   "main": "index.js",
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
+    "build": "tree-sitter generate && prebuild --napi --electron-compat",
+    "install": "node-gyp-build",
     "test": "tree-sitter test && tree-sitter parse examples/*.pl --quiet --time"
   },
   "author": "theproros@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.14.2"
+    "nan": "^2.14.2",
+    "node-gyp-build": "^4.2.3"
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.15.3"
