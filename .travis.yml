@@ -5,4 +5,20 @@ compiler: clang
 env:
   - CXX=clang++
 
-os: osx
+node_js:
+  -'6'
+
+matrix:
+  include:
+    - eval: TEST_NODE_VERSION=node
+
+before_install:
+  - nvm install $TEST_NODE_VERSION
+  - nvm use $TRAVIS_NODE_VERSION
+
+before_scrip:
+  - make build-node
+  - nvm use $TEST_NODE_VERSION
+  - node --version
+  - rm -rf ./node_modules package_lock.json
+  - npm install
