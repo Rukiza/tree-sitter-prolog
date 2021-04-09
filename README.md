@@ -1,5 +1,7 @@
 # tree-sitter-prolog
 
+![Main Build](https://travis-ci.org/Rukiza/tree-sitter-prolog.svg?branch=main)
+
 ## How to use
 
 To include in your project.
