@@ -4,7 +4,7 @@
   "description": "Tree Sitter Prolog",
   "main": "index.js",
   "scripts": {
-    "build": "tree-sitter generate && prebuild --napi --electron-compat",
+    "build": "tree-sitter generate && prebuildify --napi --electron-compat && prebuildify --napi --electron-compat --platform=windows",
     "install": "node-gyp-build",
     "test": "tree-sitter test && tree-sitter parse examples/*.pl --quiet --time"
   },
