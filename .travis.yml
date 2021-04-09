@@ -6,7 +6,7 @@ env:
   - CXX=clang++
 
 node_js:
-  -'6'
+  - "8"
 
 matrix:
   include:
