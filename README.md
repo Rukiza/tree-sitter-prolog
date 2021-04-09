@@ -1,6 +1,6 @@
 # tree-sitter-prolog
 
-![Main Build](https://travis-ci.org/Rukiza/tree-sitter-prolog.svg?branch=main)
+![Main Build](https://travis-ci.com/Rukiza/tree-sitter-prolog.svg?branch=main)
 
 ## How to use
 
