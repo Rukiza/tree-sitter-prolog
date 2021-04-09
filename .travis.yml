@@ -4,7 +4,3 @@ compiler: clang
 
 env:
   - CXX=clang++
-
-branches:
-  only:
-  - master
