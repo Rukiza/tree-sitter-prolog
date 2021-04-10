@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "8"
 
-matrix:
+jobs:
   include:
     - env: TEST_NODE_VERSION=node
 
@@ -11,8 +11,12 @@ before_install:
   - nvm install $TEST_NODE_VERSION
   - nvm use $TRAVIS_NODE_VERSION
 
-before_scrip:
+before_script:
   - nvm use $TEST_NODE_VERSION
   - node --version
   - rm -rf ./node_modules package_lock.json
   - npm install
+
+os: linux
+
+dist: xenial
