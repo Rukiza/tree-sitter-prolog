@@ -152,26 +152,6 @@
     "type": "compound_term",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "args",
-            "named": true
-          }
-        ]
-      },
-      "close": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "bracket",
-            "named": true
-          }
-        ]
-      },
       "infix": {
         "multiple": false,
         "required": false,
@@ -204,26 +184,6 @@
           },
           {
             "type": "variable",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "atom",
-            "named": true
-          }
-        ]
-      },
-      "open": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "bracket",
             "named": true
           }
         ]
@@ -284,6 +244,10 @@
           "named": true
         },
         {
+          "type": "functional_notation",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         }
@@ -317,7 +281,7 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atomic",
@@ -441,6 +405,52 @@
     "fields": {}
   },
   {
+    "type": "functional_notation",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "args",
+            "named": true
+          }
+        ]
+      },
+      "close": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bracket",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          }
+        ]
+      },
+      "open": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bracket",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "infix_operator",
     "named": true,
     "fields": {
@@ -514,7 +524,7 @@
     "fields": {
       "arguments": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "args",

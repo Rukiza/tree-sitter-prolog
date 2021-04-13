@@ -210,7 +210,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_functional_notation"
+            "name": "functional_notation"
           },
           {
             "type": "SYMBOL",
@@ -239,7 +239,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_functional_notation"
+            "name": "functional_notation"
           },
           {
             "type": "SYMBOL",
@@ -256,7 +256,7 @@
         ]
       }
     },
-    "_functional_notation": {
+    "functional_notation": {
       "type": "SEQ",
       "members": [
         {
@@ -2827,7 +2827,7 @@
     },
     "atom": {
       "type": "PATTERN",
-      "value": "[a-z][a-zA-Z0-9_]*|\\[\\]|\\{\\}"
+      "value": "[a-z][a-zA-Z0-9_]*"
     },
     "quoted_atom": {
       "type": "TOKEN",
@@ -2930,8 +2930,16 @@
             "type": "FIELD",
             "name": "arguments",
             "content": {
-              "type": "SYMBOL",
-              "name": "args"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "args"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           },
           {
@@ -2970,28 +2978,41 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "_term"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "PREC_RIGHT",
-              "value": 0,
-              "content": {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
                     "type": "SYMBOL",
                     "name": "_term"
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "PREC_RIGHT",
+                      "value": 0,
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": ","
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "_term"
+                          }
+                        ]
+                      }
+                    }
                   }
                 ]
+              },
+              {
+                "type": "BLANK"
               }
-            }
+            ]
           },
           {
             "type": "FIELD",

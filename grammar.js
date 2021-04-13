@@ -201,7 +201,7 @@ module.exports = grammar({
       /[A-Z_][a-zA-Z0-9_]*/,
 
     compound_term: $ => prec(1, choice(
-      $._functional_notation,
+      $.functional_notation,
       $._non_arg_operator, // Special case for ',' not being in arguments without ().
       $._operator_notation,
       $._list_notation,
@@ -209,13 +209,13 @@ module.exports = grammar({
     )),
 
     _compound_term_arg: $ => prec(2, choice(
-      $._functional_notation,
+      $.functional_notation,
       $._operator_notation,
       $._list_notation,
       $._curly_bracketed_notation,
     )),
 
-    _functional_notation: $ => seq(
+    functional_notation: $ => seq(
       field('name', $.atom),
       field('open', alias('(', $.bracket)),//$.open_ct,
       field('arguments', $.args),
@@ -396,7 +396,7 @@ module.exports = grammar({
     ),
 
     atom: $ => (
-      /[a-z][a-zA-Z0-9_]*|\[\]|\{\}/
+      /[a-z][a-zA-Z0-9_]*/
     ),
 
     quoted_atom: $ => token(seq('\'', /.*/, '\'')),
@@ -414,19 +414,19 @@ module.exports = grammar({
 
     list: $ => prec.right(seq(
       field('open_list', alias('[', $.square_brackets)), // open list
-      field('arguments', $.args),
+      field('arguments', optional($.args)),
       field('close_list', alias(']', $.square_brackets)) // close list
     )),
 
     curly_bracket_term: $ => prec.right(seq(
       field('open_cb', alias('{', $.curly_bracket)),
-      $._term,
+      optional(seq($._term,
       repeat(
         prec.right(seq( // TODO: Work out if correct
           ',',
           $._term
         ))
-      ),
+      ))),
       field('close_cb', alias('}', $.curly_bracket))
     )),
 
