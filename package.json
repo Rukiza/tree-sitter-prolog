@@ -2,7 +2,7 @@
   "name": "tree-sitter-prolog",
   "version": "1.1.0",
   "description": "Tree Sitter Prolog",
-  "main": "index.js",
+  "main": "bindings/node",
   "scripts": {
     "build": "tree-sitter generate && prebuildify --napi --electron-compat && prebuildify --napi --electron-compat --platform=windows",
     "install": "node-gyp-build",
