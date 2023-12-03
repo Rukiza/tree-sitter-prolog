@@ -11,11 +11,11 @@
   "author": "theproros@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.14.2",
+    "nan": "^2.18.0",
     "node-gyp-build": "^4.2.3"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.15.3"
+    "tree-sitter-cli": "^0.15.14"
   },
   "tree-sitter": [
     {
