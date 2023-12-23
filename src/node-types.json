@@ -555,6 +555,48 @@
     }
   },
   {
+    "type": "prefix_operator",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atomic",
+            "named": true
+          },
+          {
+            "type": "bracketed_term",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {
@@ -594,6 +636,10 @@
   },
   {
     "type": "bracket",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {
