@@ -5,7 +5,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atomic",
@@ -17,10 +17,6 @@
         },
         {
           "type": "compound_term",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -64,31 +60,10 @@
   {
     "type": "bracketed_term",
     "named": true,
-    "fields": {
-      "close": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "bracket",
-            "named": true
-          }
-        ]
-      },
-      "open": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "bracket",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atomic",
@@ -183,17 +158,15 @@
             "named": true
           },
           {
-            "type": "variable",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": false,
-        "types": [
+            "type": "false",
+            "named": false
+          },
           {
-            "type": "operator",
+            "type": "true",
+            "named": false
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -229,6 +202,14 @@
             "named": true
           },
           {
+            "type": "false",
+            "named": false
+          },
+          {
+            "type": "true",
+            "named": false
+          },
+          {
             "type": "variable",
             "named": true
           }
@@ -257,28 +238,7 @@
   {
     "type": "curly_bracket_term",
     "named": true,
-    "fields": {
-      "close_cb": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "curly_bracket",
-            "named": true
-          }
-        ]
-      },
-      "open_cb": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "curly_bracket",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
@@ -389,10 +349,6 @@
           "named": true
         },
         {
-          "type": "operator",
-          "named": true
-        },
-        {
           "type": "variable",
           "named": true
         }
@@ -418,32 +374,12 @@
           }
         ]
       },
-      "close": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "bracket",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "atom",
-            "named": true
-          }
-        ]
-      },
-      "open": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "bracket",
             "named": true
           }
         ]
@@ -475,17 +411,15 @@
             "named": true
           },
           {
-            "type": "variable",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
+            "type": "false",
+            "named": false
+          },
           {
-            "type": "operator",
+            "type": "true",
+            "named": false
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -509,6 +443,14 @@
           {
             "type": "dict",
             "named": true
+          },
+          {
+            "type": "false",
+            "named": false
+          },
+          {
+            "type": "true",
+            "named": false
           },
           {
             "type": "variable",
@@ -531,43 +473,97 @@
             "named": true
           }
         ]
-      },
-      "close_list": {
+      }
+    }
+  },
+  {
+    "type": "predicate_term",
+    "named": true,
+    "fields": {
+      "body": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "square_brackets",
+            "type": "atomic",
+            "named": true
+          },
+          {
+            "type": "bracketed_term",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "false",
+            "named": false
+          },
+          {
+            "type": "true",
+            "named": false
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
       },
-      "open_list": {
+      "definition": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "square_brackets",
+            "type": "atomic",
+            "named": true
+          },
+          {
+            "type": "bracketed_term",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "false",
+            "named": false
+          },
+          {
+            "type": "true",
+            "named": false
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "prefix_operator",
     "named": true,
     "fields": {
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "operator",
-            "named": true
-          }
-        ]
-      },
       "right": {
         "multiple": false,
         "required": true,
@@ -587,6 +583,14 @@
           {
             "type": "dict",
             "named": true
+          },
+          {
+            "type": "false",
+            "named": false
+          },
+          {
+            "type": "true",
+            "named": false
           },
           {
             "type": "variable",
@@ -619,11 +623,81 @@
             "named": true
           }
         ]
+      },
+      "definition": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "predicate_term",
+            "named": true
+          }
+        ]
       }
     }
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "*->",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "-->",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "/+",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
+    "type": "/\\",
     "named": false
   },
   {
@@ -631,11 +705,143 @@
     "named": false
   },
   {
-    "type": "atom",
-    "named": true
+    "type": ":-",
+    "named": false
   },
   {
-    "type": "bracket",
+    "type": "::",
+    "named": false
+  },
+  {
+    "type": ":<",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "=..",
+    "named": false
+  },
+  {
+    "type": "=:=",
+    "named": false
+  },
+  {
+    "type": "=<",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "=@=",
+    "named": false
+  },
+  {
+    "type": "=\\=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">:<",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "?-",
+    "named": false
+  },
+  {
+    "type": "@<",
+    "named": false
+  },
+  {
+    "type": "@=<",
+    "named": false
+  },
+  {
+    "type": "@>",
+    "named": false
+  },
+  {
+    "type": "@>=",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "\\+",
+    "named": false
+  },
+  {
+    "type": "\\/",
+    "named": false
+  },
+  {
+    "type": "\\=",
+    "named": false
+  },
+  {
+    "type": "\\==",
+    "named": false
+  },
+  {
+    "type": "\\=@=",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "as",
+    "named": false
+  },
+  {
+    "type": "atom",
     "named": true
   },
   {
@@ -643,39 +849,111 @@
     "named": true
   },
   {
-    "type": "curly_bracket",
+    "type": "cut",
     "named": true
   },
   {
-    "type": "cut",
-    "named": true
+    "type": "directive",
+    "named": false
+  },
+  {
+    "type": "discontiguous",
+    "named": false
+  },
+  {
+    "type": "div",
+    "named": false
+  },
+  {
+    "type": "dynamic",
+    "named": false
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "initialization",
+    "named": false
+  },
+  {
+    "type": "is",
+    "named": false
+  },
+  {
+    "type": "meta_predicate",
+    "named": false
+  },
+  {
+    "type": "mod",
+    "named": false
+  },
+  {
+    "type": "module_transparent",
+    "named": false
+  },
+  {
+    "type": "multifile",
+    "named": false
   },
   {
     "type": "number",
     "named": true
   },
   {
-    "type": "operator",
-    "named": true
+    "type": "public",
+    "named": false
   },
   {
     "type": "quoted_atom",
     "named": true
   },
   {
-    "type": "square_brackets",
-    "named": true
+    "type": "rdiv",
+    "named": false
+  },
+  {
+    "type": "rem",
+    "named": false
   },
   {
     "type": "string",
     "named": true
   },
   {
+    "type": "thread_initialization",
+    "named": false
+  },
+  {
+    "type": "thread_local",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
     "type": "variable",
     "named": true
   },
   {
+    "type": "volatile",
+    "named": false
+  },
+  {
+    "type": "volitile",
+    "named": false
+  },
+  {
+    "type": "xor",
+    "named": false
+  },
+  {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

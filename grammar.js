@@ -86,7 +86,7 @@ const PREC = {
 }
 
 const ops = [
-  ':-',
+  // ':-',
   '-->',
   '?-',
   'dynamic','discontiguous','initialization','meta_predicate',
@@ -142,14 +142,15 @@ module.exports = grammar({
       //$._declaration_statement
       choice(
         field('declarive', $.directive_term),
-        field('clause', $.clause_term)
+        field('clause', $.clause_term),
+        field('definition', $.predicate_term)
       )
     ),
 
     // Change
 
     directive_term: $ => seq(
-      alias(':-', $.operator),
+      ':-',
       $._term,
       $.end
     ),
@@ -160,8 +161,17 @@ module.exports = grammar({
       $.end
     ),
 
+    predicate_term: $ => seq(
+      field('definition', $._term),
+      ':-',
+      field('body', $._term),
+      $.end
+    ),
+
     _term: $ => prec(1, choice(
       // Define Term
+      'true',
+      'false',
       $.atomic,
       $.variable,
       $.compound_term,
@@ -177,9 +187,9 @@ module.exports = grammar({
     )),
 
     bracketed_term: $ => seq(
-      field('open', alias('(', $.bracket)),
+      '(',
       $._term,
-      field('close', alias(')', $.bracket)),
+      ')'
     ),
 
     end: $ => choice(
@@ -212,14 +222,14 @@ module.exports = grammar({
       $.functional_notation,
       $._operator_notation,
       $._list_notation,
-      $._curly_bracketed_notation,
+    $._curly_bracketed_notation,
     )),
 
     functional_notation: $ => seq(
       field('name', $.atom),
-      field('open', alias('(', $.bracket)),//$.open_ct,
+      '(',//$.open_ct,
       field('arguments', $.args),
-      field('close', alias(')', $.bracket))//$.close_ct
+      ')'//$.close_ct
     ),
 
     _operator_notation: $ => choice(
@@ -255,7 +265,7 @@ module.exports = grammar({
     infix_operator: $ => { // xfx
 
       const table = [
-        [prec, PREC.clause, ':-'], // xfx
+        //[prec, PREC.clause, ':-'], // xfx
         [prec, PREC.dcg, '-->'], // xfx
 
         [prec.right, PREC.list_sperator, '|'], // xfy
@@ -317,14 +327,14 @@ module.exports = grammar({
 
       return choice(...table.map(([fn, precidence, operator]) => fn(precidence, seq(
         field('left', $._term),
-        field('operator', alias(operator, $.operator)),
+        operator,
         field('right', $._term)
       ))))
     },
 
     _non_arg_operator: $ => prec.right(PREC.conjunction, seq(
       field('left', $._term),
-      field('operator', alias(',', $.operator)),
+      ',',
       field('right', $._term)
     )),
 
@@ -349,7 +359,7 @@ module.exports = grammar({
       ];
 
       return choice(...table.map(([precidence, operator]) => prec(precidence, seq(
-        field('operator', alias(operator, $.operator)),
+        operator,
         field('right', $._term)
       ))))
     },
@@ -363,7 +373,7 @@ module.exports = grammar({
       ];
 
       return choice(...table.map(([precidence, operator]) => prec.right(precidence, seq(
-        field('operator', alias(operator, $.operator)),
+        operator,
         field('right', $._term)
       ))))
     },
@@ -413,13 +423,13 @@ module.exports = grammar({
     )),
 
     list: $ => prec.right(seq(
-      field('open_list', alias('[', $.square_brackets)), // open list
+      '[', // open list
       field('arguments', optional($.args)),
-      field('close_list', alias(']', $.square_brackets)) // close list
+      ']' // close list
     )),
 
     curly_bracket_term: $ => prec.right(seq(
-      field('open_cb', alias('{', $.curly_bracket)),
+      '{',
       optional(seq($._term,
       repeat(
         prec.right(seq( // TODO: Work out if correct
@@ -427,7 +437,7 @@ module.exports = grammar({
           $._term
         ))
       ))),
-      field('close_cb', alias('}', $.curly_bracket))
+      '}'
     )),
 
     _arg: $ => prec.left(choice(
@@ -447,9 +457,9 @@ module.exports = grammar({
 
     // Operators avliable in a predicate or list.
     _operator_pred_list: $ => {
-      return alias(choice(...ops.map((op) =>
+      return choice(...ops.map((op) =>
         op
-      )), $.operator)
+      ))
     }
 
   },
